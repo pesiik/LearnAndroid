@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">OrientationLearn</string>
+    <string name="first_button">Первая кнопка</string>
+    <string name="second_button">Вторая кнопка</string>
+    <string name="third_button">Третья кнопка</string>
+    <string name="fourth_button">Четвёртая кнопка</string>
+    <string name="fifth_button">Пятая кнопка</string>
+    <string name="sixth_button">Шестая кнопка</string>
+    <string name="seventh_button">Седьма кнопка</string>
+    <string name="eighth_button">Восьмая кнопка</string>
+</resources>
