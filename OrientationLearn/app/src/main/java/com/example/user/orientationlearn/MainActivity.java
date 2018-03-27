@@ -1,35 +1,36 @@
 package com.example.user.orientationlearn;
 
-import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button mButton;
-    static final String ORIENTATION_PORTRAIT = "Портретный режим";
-    static final String ORIENTATION_LANDSCAPE = "Альбомный режим";
 
-    // определяем изменение ориентации экрана
-    boolean mState = false;
+
+    private static final String KEY_TEXT = "TEXT";
+    private static String postText = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText editText = (EditText)findViewById(R.id.editTest);
+        final TextView textView = (TextView)findViewById(R.id.textView);
+        if(savedInstanceState!=null){
+            String buff = savedInstanceState.get(KEY_TEXT).toString();
+            textView.setText(buff);}
+
+        final EditText editText = (EditText)findViewById(R.id.editTest);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Toast.makeText(MainActivity.this,
-                        "onTextChanged: " + s, Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -40,9 +41,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                postText = s.toString();
+                textView.setText(postText);
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+        super.onSaveInstanceState(outState);
+
+        outState.putString(KEY_TEXT, postText);
     }
 
 
